@@ -10,7 +10,7 @@ const App: React.FC = () => {
 
 
   return (
-    <div className="App">
+    <div className="App text-green-500">
       <h1>Stock Candlestick Chart</h1>
       <section className='w-full h-screen bg-whtie'>
         <select value={selectedSymbol} onChange={(e) => setSelectedSymbol(e.target.value)}>

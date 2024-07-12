@@ -1,6 +1,6 @@
 import axios from "axios";
 // const API_KEY = 'RIBXT3XYLI69PC0Q';
-const API_KEY = 'F76TL5L97DDEFZXD';
+// const API_KEY = 'F76TL5L97DDEFZXD';
 const BASE_URL = 'https://www.alphavantage.co/query';
 
 export const fetchWeeklyTimeSeries = async (symbol:string, year:number) => {

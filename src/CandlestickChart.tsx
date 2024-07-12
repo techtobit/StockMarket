@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Chart from 'react-apexcharts';
 import { fetchWeeklyTimeSeries } from './alphaVantage';
+import { ApexOptions } from 'apexcharts';
 
 interface CandlestickChartProps {
   symbol: string;
@@ -30,7 +31,7 @@ const CandlestickChart: React.FC<CandlestickChartProps> = ({ symbol }) => {
     fetchData();
   }, [symbol]);
 
-  const options = {
+  const options: ApexOptions = {
     chart: {
       type: 'candlestick'
     },
@@ -41,7 +42,7 @@ const CandlestickChart: React.FC<CandlestickChartProps> = ({ symbol }) => {
 
   return (
     <div>
-      <Chart options={options} series={series} type="candlestick" height={350} />
+      <Chart options={options} series={series} type="candlestick" width={950} height={450} />
     </div>
   );
 };

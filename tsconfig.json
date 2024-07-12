@@ -1,4 +1,13 @@
 {
+  
+  "compilerOptions": {
+      "types": [
+        "node",
+        "react",
+        "react-dom",
+        "@types/apexcharts" 
+      ]
+    },
   "files": [],
   "references": [
     {
