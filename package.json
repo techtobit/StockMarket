@@ -1,5 +1,5 @@
 {
-  "name": "vite-project",
+  "name": "stock-market",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -10,7 +10,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "apexcharts": "^3.50.0",
+    "axios": "^1.7.2",
     "react": "^18.3.1",
+    "react-apexcharts": "^1.4.1",
     "react-dom": "^18.3.1"
   },
   "devDependencies": {
@@ -23,6 +26,6 @@
     "eslint-plugin-react-hooks": "^4.6.2",
     "eslint-plugin-react-refresh": "^0.4.7",
     "typescript": "^5.2.2",
-    "vite": "^5.3.1"
+    "vite": "^5.3.3"
   }
 }
