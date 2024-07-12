@@ -5,8 +5,16 @@ import './App.css';
 const App: React.FC = () => {
   const symbols = ['IBM', 'MSFT', 'MICROSOFT',];
 
-
   const [selectedSymbol, setSelectedSymbol] = useState<string>(symbols[0])
+  const [intervalSelected, setIntervalSelected] = useState<string>('5min');
+
+  const handleIntervalClick = (interval: string) => {
+    setIntervalSelected(interval);
+  };
+
+  
+  
+
 
 
   return (
@@ -20,9 +28,15 @@ const App: React.FC = () => {
             ))
           }
         </select>
+        <div className='flex gap-2'>
+        <button onClick={() => handleIntervalClick('5min')}>5min</button>
+        <button onClick={() => handleIntervalClick('15min')}>15min</button>
+        <button onClick={() => handleIntervalClick('30min')}>30min</button>
+        <button onClick={() => handleIntervalClick('60min')}>60min</button>
+      </div>
 
       </section>
-      <CandlestickChart symbol={selectedSymbol} />
+      <CandlestickChart symbol={selectedSymbol} intervalSelected={intervalSelected} />
     </div>
   );
 };
