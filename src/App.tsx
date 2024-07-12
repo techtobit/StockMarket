@@ -7,7 +7,7 @@ const App: React.FC = () => {
 
   const [selectedSymbol, setSelectedSymbol] = useState<string>(symbols[0])
   const [intervalSelected, setIntervalSelected] = useState<string>('5min');
-  const [selectedCartType, setSelectedCartType] = useState<'candlestick' | 'line' | 'area' | 'bar'>('candlestick');
+  const [selectedCartType, setSelectedCartType] = useState<any>('candlestick');
 
   const handleIntervalClick = (interval: string) => {
     setIntervalSelected(interval);
@@ -48,7 +48,7 @@ const App: React.FC = () => {
         </div>
 
       </section>
-      <CandlestickChart symbol={selectedSymbol} intervalSelected={intervalSelected} selectedCartType={selectedCartType} />
+      <CandlestickChart symbol={selectedSymbol} intervalSelected={intervalSelected} selectedCartType={selectedCartType}/>
     </div>
   );
 };
