@@ -6,7 +6,8 @@ import { ApexOptions } from 'apexcharts';
 interface CandlestickChartProps {
   symbol: string;
   intervalSelected: string;
-  selectedCartType: string;
+  // selectedCartType: string;
+  selectedCartType: 'line' | 'area' | 'bar' ;
 }
 
 const CandlestickChart: React.FC<CandlestickChartProps> = ({ symbol,intervalSelected, selectedCartType }) => {
@@ -35,11 +36,11 @@ const CandlestickChart: React.FC<CandlestickChartProps> = ({ symbol,intervalSele
   const options: ApexOptions = {
     chart: {
 
-      type: `${selectedCartType}`,
+      type: selectedCartType,
       stacked: false,
     },
     fill: {
-      
+
     },
     xaxis: {
       type: 'datetime'

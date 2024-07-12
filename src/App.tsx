@@ -7,13 +7,13 @@ const App: React.FC = () => {
 
   const [selectedSymbol, setSelectedSymbol] = useState<string>(symbols[0])
   const [intervalSelected, setIntervalSelected] = useState<string>('5min');
-  const [selectedCartType, setSelectedCartType] = useState<string>('candlestick');
+  const [selectedCartType, setSelectedCartType] = useState<'candlestick' | 'line' | 'area' | 'bar'>('candlestick');
 
   const handleIntervalClick = (interval: string) => {
     setIntervalSelected(interval);
   };
-  const handleCartTypeClick = (CartType: string) => {
-    setSelectedCartType(CartType);
+  const handleCartTypeClick = (type: typeof selectedCartType) => {
+    setSelectedCartType(type);
   };
 
   
