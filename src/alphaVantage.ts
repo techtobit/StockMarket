@@ -9,7 +9,7 @@ export const fetchWeeklyTimeSeries = async (symbol:string,intervalSelected:strin
 	// const url = `${BASE_URL}?function=TIME_SERIES_WEEKLY&symbol=${symbol}&apikey=${API_KEY}`;
 	// const url = `${BASE_URL}?function=TIME_SERIES_WEEKLY&symbol=${symbol}&apikey=demo`;
 	// const url = `https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=IBM&interval=5min&apikey=1N1RODWWH2NYB4IO`;
-	const url = `${BASE_URL}?function=TIME_SERIES_INTRADAY&symbol=${symbol}&interval=${intervalSelected}&apikey=BCCXC5B1DFLSQC1Y.`;
+	const url = `${BASE_URL}?function=TIME_SERIES_INTRADAY&symbol=${symbol}&interval=${intervalSelected}&apikey=demo`;
   const interval = `Time Series (${intervalSelected})`
 
 

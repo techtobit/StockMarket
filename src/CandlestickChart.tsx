@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import Chart from 'react-apexcharts';
+import Chart  from 'react-apexcharts';
 import { fetchWeeklyTimeSeries } from './alphaVantage';
 import { ApexOptions } from 'apexcharts';
 
 interface CandlestickChartProps {
   symbol: string;
   intervalSelected: string;
+  selectedCartType: string;
 }
 
-const CandlestickChart: React.FC<CandlestickChartProps> = ({ symbol,intervalSelected }) => {
+const CandlestickChart: React.FC<CandlestickChartProps> = ({ symbol,intervalSelected, selectedCartType }) => {
   
   const [series, setSeries] = useState<any[]>([]);
 
@@ -33,16 +34,24 @@ const CandlestickChart: React.FC<CandlestickChartProps> = ({ symbol,intervalSele
 
   const options: ApexOptions = {
     chart: {
-      type: 'candlestick'
+
+      type: `${selectedCartType}`,
+      stacked: false,
+    },
+    fill: {
+      
     },
     xaxis: {
       type: 'datetime'
+    },
+    tooltip: {
+      shared: false,
     }
   };
 
   return (
     <div>
-      <Chart options={options} series={series} type="candlestick" width={950} height={450} />
+      <Chart options={options} series={series} type={selectedCartType} width={950} height={450} />
     </div>
   );
 };
