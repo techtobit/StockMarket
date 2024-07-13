@@ -1,4 +1,4 @@
-  import React, { useState } from 'react';
+import React, { useState } from 'react';
 import CandlestickChart from './CandlestickChart';
 import './App.css';
 import candleIcon from './assets/candlestick.png';
@@ -13,11 +13,13 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const App: React.FC = () => {
   const symbols = ['IBM', 'MSFT', 'MICROSOFT',];
+  const APIs = ['demo', 'QCGZN99FHL7AB8RS', 'RIBXT3XYLI69PC0Q', 'N889LOBWTY06AKKK', '9ZI0S1HIR6EDN7NR']
 
   const [selectedSymbol, setSelectedSymbol] = useState<string>(symbols[0])
   const [intervalSelected, setIntervalSelected] = useState<string>('5min');
   const [selectedTimeSeries, setSelectedTimeSeries] = useState<any>('TIME_SERIES_INTRADAY');
   const [selectedCartType, setSelectedCartType] = useState<any>('candlestick');
+  const [API_KEY, setAPI_KEY] = useState<any>(APIs[0]);
 
   const handleIntervalClick = (interval: string) => {
     setIntervalSelected(interval);
@@ -29,15 +31,29 @@ const App: React.FC = () => {
     setSelectedCartType(type);
   };
 
-  
+
 
 
   return (
 
     <div className="App text-blck bg-gray-100">
+      <nav className="fixed top-0 z-50 w-full bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700">
+        <div className="px-3 py-3 lg:px-5 lg:pl-3">
+          <div className="flex items-center justify-center gap-4">
+            <p className='text-lg text-green-400 font-semibold'>Change API key if it crose it's limit</p>
+            <select value={API_KEY} onChange={(e) => setAPI_KEY(e.target.value)}>
+              {
+                APIs.map(api => (
+                  <option key={api} value={api}>{api}</option>
+                ))
+              }
+            </select>
+          </div>
+        </div>
+      </nav>
 
       <aside id="logo-sidebar" className="fixed top-0 left-0 z-40 w-64 h-screen pt-10 transition-transform -translate-x-full bg-white border-r border-gray-200 sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700" aria-label="Sidebar">
-        <div className="h-full px-3 pb-6 pt-4 overflow-y-auto bg-white dark:bg-gray-800">
+        <div className="h-full px-3 pb-6 pt-10 overflow-y-auto bg-white dark:bg-gray-800">
           <ul className="space-y-4 font-medium">
             <li>
               <a href="#" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
@@ -56,22 +72,22 @@ const App: React.FC = () => {
             </li>
             <li>
               <a href="#" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-              <img className='w-[24px]' src={cryptoIcon} alt="" />
+                <img className='w-[24px]' src={cryptoIcon} alt="" />
                 <span className="flex-1 ms-3 whitespace-nowrap">Crypto</span>
               </a>
             </li>
             <li>
               <a href="#" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-              <img className='w-[24px]' src={fundamentalsIcon} alt="" />
+                <img className='w-[24px]' src={fundamentalsIcon} alt="" />
                 <span className="flex-1 ms-3 whitespace-nowrap">Fundamental</span>
               </a>
             </li>
             <li>
               <a href="#" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-              <img className='w-[24px]' src={newsIcon} alt="" />
+                <img className='w-[24px]' src={newsIcon} alt="" />
                 <span className="flex-1 ms-3 whitespace-nowrap">News</span>
                 <span className="inline-flex items-center justify-center w-3 h-3 p-3 ms-3 text-sm font-medium text-blue-800 bg-blue-100 rounded-full dark:bg-blue-900 dark:text-blue-300">3</span>
-      
+
               </a>
             </li>
             <li>
@@ -86,7 +102,7 @@ const App: React.FC = () => {
         </div>
       </aside>
 
-      <div className=" px-4 sm:ml-64">
+      <div className=" px-4 sm:ml-64 pt-4">
         <div className="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 mt-14">
 
           <div className='flex w-full bg-whtie gap-4'>
@@ -98,21 +114,21 @@ const App: React.FC = () => {
               }
             </select>
             <div className='flex gap-2  border-2 border-gray-200 '>
-              <button onClick={() => handleIntervalClick('5min')}  className='bg-blue-100 px-1 rounded-md m-1 hover:bg-blue-300'>5min</button>
+              <button onClick={() => handleIntervalClick('5min')} className='bg-blue-100 px-1 rounded-md m-1 hover:bg-blue-300'>5min</button>
               <button onClick={() => handleIntervalClick('15min')} className='bg-blue-100 px-1 rounded-md m-1 hover:bg-blue-300'>15min</button>
               <button onClick={() => handleIntervalClick('30min')} className='bg-blue-100 px-1 rounded-md m-1 hover:bg-blue-300'>30min</button>
               <button onClick={() => handleIntervalClick('60min')} className='bg-blue-100 px-1 rounded-md m-1 hover:bg-blue-300'>60min</button>
             </div>
             <div className='flex gap-2  border-2 border-gray-200 '>
-              <button onClick={() => handleTimeSeriesClick('TIME_SERIES_INTRADAY')}  className='bg-blue-100 px-1 rounded-md m-1 hover:bg-blue-300'>Daily</button>
-              <button onClick={() => handleTimeSeriesClick('TIME_SERIES_WEEKLY')}  className='bg-blue-100 px-1 rounded-md m-1 hover:bg-blue-300'>Weekly</button>
+              <button onClick={() => handleTimeSeriesClick('TIME_SERIES_INTRADAY')} className='bg-blue-100 px-1 rounded-md m-1 hover:bg-blue-300'>Daily</button>
+              <button onClick={() => handleTimeSeriesClick('TIME_SERIES_WEEKLY')} className='bg-blue-100 px-1 rounded-md m-1 hover:bg-blue-300'>Weekly</button>
               <button onClick={() => handleTimeSeriesClick('TIME_SERIES_MONTHLY')} className='bg-blue-100 px-1 rounded-md m-1 hover:bg-blue-300'>Monthly</button>
             </div>
             <div className='border-2 '>
-              <button   onClick={() => handleCartTypeClick('candlestick')} className='px-4 btn btn-blue bg-blue-100 px-1 rounded-md m-1 hover:bg-blue-300' >
+              <button onClick={() => handleCartTypeClick('candlestick')} className='px-4 btn btn-blue bg-blue-100 px-1 rounded-md m-1 hover:bg-blue-300' >
                 <img className='w-8 h-8' src={candleIcon} alt="" />
               </button>
-              <button  onClick={() => handleCartTypeClick('line')} className='px-4 btn btn-blue bg-blue-100 px-1 rounded-md m-1 hover:bg-blue-300' >
+              <button onClick={() => handleCartTypeClick('line')} className='px-4 btn btn-blue bg-blue-100 px-1 rounded-md m-1 hover:bg-blue-300' >
                 <img className='w-8 h-8' src={lineIcon} alt="" />
               </button>
               <button onClick={() => handleCartTypeClick('area')} className='px-4 btn btn-blue bg-blue-100 px-1 rounded-md m-1 hover:bg-blue-300' >
@@ -123,7 +139,7 @@ const App: React.FC = () => {
 
           </div>
 
-          <CandlestickChart symbol={selectedSymbol} intervalSelected={intervalSelected} selectedTimeSeries={selectedTimeSeries} selectedCartType={selectedCartType} />
+          <CandlestickChart symbol={selectedSymbol} intervalSelected={intervalSelected} selectedTimeSeries={selectedTimeSeries} selectedCartType={selectedCartType} API_KEY={API_KEY} />
 
         </div>
       </div>

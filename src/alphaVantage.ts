@@ -1,10 +1,9 @@
 import axios from "axios";
 import { toast } from "react-toastify";
-// const API_KEY = 'RIBXT3XYLI69PC0Q';
-const API_KEY = 'demo';
+
 const BASE_URL = 'https://www.alphavantage.co/query';
 
-export const fetchWeeklyTimeSeries = async (symbol:string,intervalSelected:string,  selectedTimeSeries:string, year:number) => {
+export const fetchWeeklyTimeSeries = async (symbol:string,intervalSelected:string,  selectedTimeSeries:string, year:number, API_KEY:string) => {
 
   let interval:string | null =''
   let url: string | null = null;

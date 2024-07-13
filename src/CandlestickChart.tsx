@@ -8,16 +8,17 @@ interface CandlestickChartProps {
   intervalSelected: string;
   selectedCartType: 'line' | 'area' | 'bar' ;
   selectedTimeSeries: string;
+  API_KEY: string;
 }
 
-const CandlestickChart: React.FC<CandlestickChartProps> = ({ symbol,intervalSelected, selectedTimeSeries, selectedCartType }) => {
+const CandlestickChart: React.FC<CandlestickChartProps> = ({ symbol,intervalSelected, selectedTimeSeries, selectedCartType, API_KEY }) => {
   
   const [series, setSeries] = useState<any[]>([]);
 
   useEffect(() => {
     const fetchData = async () => {
       const currentYear = new Date().getFullYear();
-      const data = await fetchWeeklyTimeSeries(symbol,intervalSelected, selectedTimeSeries, currentYear);
+      const data = await fetchWeeklyTimeSeries(symbol,intervalSelected, selectedTimeSeries, currentYear, API_KEY);
 
       const chartData = Object.keys(data).map(date => {
         const { '1. open': open, '2. high': high, '3. low': low, '4. close': close } = data[date];
@@ -31,7 +32,7 @@ const CandlestickChart: React.FC<CandlestickChartProps> = ({ symbol,intervalSele
     };
 
     fetchData();
-  }, [symbol,intervalSelected, selectedTimeSeries]);
+  }, [symbol,intervalSelected, selectedTimeSeries, API_KEY]);
 
   const options: ApexOptions = {
     chart: {
@@ -51,7 +52,7 @@ const CandlestickChart: React.FC<CandlestickChartProps> = ({ symbol,intervalSele
   };
 
   return (
-    <div>
+    <div className=''>
       <Chart options={options} series={series} type={selectedCartType} width={950} height={450} />
     </div>
   );
