@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+  import React, { useState } from 'react';
 import CandlestickChart from './CandlestickChart';
 import './App.css';
 import candleIcon from './assets/candlestick.png';
@@ -8,6 +8,8 @@ import cryptoIcon from './assets/cryptocurrency.png';
 import forexIcon from './assets/forexIcon.png';
 import fundamentalsIcon from './assets/fundamentals.png';
 import newsIcon from './assets/news.png';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const App: React.FC = () => {
   const symbols = ['IBM', 'MSFT', 'MICROSOFT',];
@@ -126,7 +128,7 @@ const App: React.FC = () => {
         </div>
       </div>
 
-
+      <ToastContainer />
     </div >
   );
 };

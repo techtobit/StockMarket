@@ -1,8 +1,9 @@
 import axios from "axios";
+import { toast } from "react-toastify";
 // const API_KEY = 'RIBXT3XYLI69PC0Q';
 // const API_KEY = 'F76TL5L97DDEFZXD';
 // const API_KEY = '1N1RODWWH2NYB4IO';
-const API_KEY = 'GOZ6FFEASUVRG0D5';
+const API_KEY = 'demo';
 const BASE_URL = 'https://www.alphavantage.co/query';
 
 export const fetchWeeklyTimeSeries = async (symbol:string,intervalSelected:string,  selectedTimeSeries:string, year:number) => {
@@ -33,19 +34,31 @@ export const fetchWeeklyTimeSeries = async (symbol:string,intervalSelected:strin
     }
   }
 
-  if(url){
-    const response = await axios.get(url);
-    const timeSeries = response.data[interval];
-    console.log(timeSeries);
-  
-    const filteredData = Object.keys(timeSeries)
-    .filter(date => new Date(date).getFullYear() === year)
-    .reduce((acc, date) => {
-      acc[date] = timeSeries[date];
-      return acc;
-    }, {} as any);
-    console.log(filteredData);
-    return filteredData;
+  if (url) {
+    try {
+      const response = await axios.get(url);
+      const timeSeries = response.data[interval];
+      console.log(timeSeries);
+
+      const filteredData = Object.keys(timeSeries)
+        .filter(date => new Date(date).getFullYear() === year)
+        .reduce((acc, date) => {
+          acc[date] = timeSeries[date];
+          return acc;
+        }, {} as any);
+
+      console.log(filteredData);
+      return filteredData;
+    } catch (error:any) {
+      console.error('Error fetching data:', error);
+      toast.error(`API limit Ended: 25 requests per day`);
+      return null;
+    }
+  } else {
+    console.error('Invalid URL');
+    toast.error(`Invalid URL`);
+    return null;
   }
+
 };
   
