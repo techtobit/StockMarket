@@ -5,6 +5,8 @@ const BASE_URL = 'https://www.alphavantage.co/query';
 
 export const fetchWeeklyTimeSeries = async (symbol:string,intervalSelected:string,  selectedTimeSeries:string, year:number, API_KEY:string) => {
 
+  console.log(API_KEY);
+  
   let interval:string | null =''
   let url: string | null = null;
 	// url = `${BASE_URL}?function=TIME_SERIES_INTRADAY&symbol=${symbol}&interval=${intervalSelected}&apikey=demo`;

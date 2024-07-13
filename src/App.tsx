@@ -13,7 +13,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const App: React.FC = () => {
   const symbols = ['IBM', 'MSFT', 'MICROSOFT',];
-  const APIs = ['demo', 'QCGZN99FHL7AB8RS', 'RIBXT3XYLI69PC0Q', 'N889LOBWTY06AKKK', '9ZI0S1HIR6EDN7NR']
+  const APIs = ['demo','FS0HC0C3Q9K92BUB', 'QCGZN99FHL7AB8RS', 'RIBXT3XYLI69PC0Q', 'N889LOBWTY06AKKK', '9ZI0S1HIR6EDN7NR']
 
   const [selectedSymbol, setSelectedSymbol] = useState<string>(symbols[0])
   const [intervalSelected, setIntervalSelected] = useState<string>('5min');
@@ -39,7 +39,7 @@ const App: React.FC = () => {
       <nav className="fixed top-0 z-50 w-full bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700">
         <div className="px-3 py-3 lg:px-5 lg:pl-3">
           <div className="flex items-center justify-center gap-4">
-            <p className='text-lg text-green-400 font-semibold'>Change API key if it crose it's limit</p>
+            <p className='text-lg text-green-400 font-semibold'>If API reaches its limit select new One</p>
             <select value={API_KEY} onChange={(e) => setAPI_KEY(e.target.value)}>
               {
                 APIs.map(api => (
