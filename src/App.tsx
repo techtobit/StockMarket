@@ -33,7 +33,6 @@ const App: React.FC = () => {
 
 
 
-
   return (
 
     <div className="App text-blck bg-gray-100">
@@ -114,10 +113,10 @@ const App: React.FC = () => {
               }
             </select>
             <div className='flex gap-2  border-2 border-gray-200 '>
-              <button onClick={() => handleIntervalClick('5min')} className='bg-blue-100 px-1 rounded-md m-1 hover:bg-blue-300'>5min</button>
-              <button onClick={() => handleIntervalClick('15min')} className='bg-blue-100 px-1 rounded-md m-1 hover:bg-blue-300'>15min</button>
-              <button onClick={() => handleIntervalClick('30min')} className='bg-blue-100 px-1 rounded-md m-1 hover:bg-blue-300'>30min</button>
-              <button onClick={() => handleIntervalClick('60min')} className='bg-blue-100 px-1 rounded-md m-1 hover:bg-blue-300'>60min</button>
+              <button id='intervalBtn' onClick={() => handleIntervalClick('5min')} className={`${selectedTimeSeries != 'TIME_SERIES_INTRADAY'  ? 'bg-gray-200 cursor-not-allowed':'hover:bg-blue-300'} bg-blue-100 px-1 rounded-md m-1`}>5min</button>
+              <button id='intervalBtn' onClick={() => handleIntervalClick('15min')} className={`${selectedTimeSeries != 'TIME_SERIES_INTRADAY'  ? 'bg-gray-200 cursor-not-allowed':'hover:bg-blue-300'} bg-blue-100 px-1 rounded-md m-1`}>15min</button>
+              <button id='intervalBtn' onClick={() => handleIntervalClick('30min')} className={`${selectedTimeSeries != 'TIME_SERIES_INTRADAY'  ? 'bg-gray-200 cursor-not-allowed':'hover:bg-blue-300'} bg-blue-100 px-1 rounded-md m-1`}>30min</button>
+              <button id='intervalBtn' onClick={() => handleIntervalClick('60min')} className={`${selectedTimeSeries != 'TIME_SERIES_INTRADAY'  ? 'bg-gray-200 cursor-not-allowed':'hover:bg-blue-300'} bg-blue-100 px-1 rounded-md m-1`}>60min</button>
             </div>
             <div className='flex gap-2  border-2 border-gray-200 '>
               <button onClick={() => handleTimeSeriesClick('TIME_SERIES_INTRADAY')} className='bg-blue-100 px-1 rounded-md m-1 hover:bg-blue-300'>Daily</button>
