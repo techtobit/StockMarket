@@ -15,5 +15,4 @@ TailwindCSS, TypeScript, Alpha Vantage API, Apexcharts, Flowbit, Toast.
 
 
 ## Video
-
-[![Watch the video](https://i.ibb.co/D758NcD/stock-tumb.png)](https://youtu.be/-hu4CgOtG3U?si=4v0WITsGWmq_aw8I)
+[![Watch the video](https://demo.shotshare.dev/uploads/XWX2axjubRSxJri2gUluy1KdvZ6qqlwGAcwW6zaW.png)](https://youtu.be/-hu4CgOtG3U?si=4v0WITsGWmq_aw8I)
