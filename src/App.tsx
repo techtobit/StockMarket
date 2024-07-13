@@ -8,7 +8,7 @@ import cryptoIcon from './assets/cryptocurrency.png';
 import forexIcon from './assets/forexIcon.png';
 import fundamentalsIcon from './assets/fundamentals.png';
 import newsIcon from './assets/news.png';
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const App: React.FC = () => {
