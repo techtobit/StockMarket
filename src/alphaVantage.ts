@@ -1,8 +1,6 @@
 import axios from "axios";
 import { toast } from "react-toastify";
 // const API_KEY = 'RIBXT3XYLI69PC0Q';
-// const API_KEY = 'F76TL5L97DDEFZXD';
-// const API_KEY = '1N1RODWWH2NYB4IO';
 const API_KEY = 'demo';
 const BASE_URL = 'https://www.alphavantage.co/query';
 
