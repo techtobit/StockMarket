@@ -14,15 +14,20 @@ const App: React.FC = () => {
 
   const [selectedSymbol, setSelectedSymbol] = useState<string>(symbols[0])
   const [intervalSelected, setIntervalSelected] = useState<string>('5min');
+  const [selectedTimeSeries, setSelectedTimeSeries] = useState<any>('TIME_SERIES_INTRADAY');
   const [selectedCartType, setSelectedCartType] = useState<any>('candlestick');
 
   const handleIntervalClick = (interval: string) => {
     setIntervalSelected(interval);
   };
+  const handleTimeSeriesClick = (timeSeries: string) => {
+    setSelectedTimeSeries(timeSeries);
+  };
   const handleCartTypeClick = (type: typeof selectedCartType) => {
     setSelectedCartType(type);
   };
 
+  
 
 
   return (
@@ -96,6 +101,11 @@ const App: React.FC = () => {
               <button onClick={() => handleIntervalClick('30min')} className='bg-blue-100 px-1 rounded-md m-1 hover:bg-blue-300'>30min</button>
               <button onClick={() => handleIntervalClick('60min')} className='bg-blue-100 px-1 rounded-md m-1 hover:bg-blue-300'>60min</button>
             </div>
+            <div className='flex gap-2  border-2 border-gray-200 '>
+              <button onClick={() => handleTimeSeriesClick('TIME_SERIES_INTRADAY')}  className='bg-blue-100 px-1 rounded-md m-1 hover:bg-blue-300'>Daily</button>
+              <button onClick={() => handleTimeSeriesClick('TIME_SERIES_WEEKLY')}  className='bg-blue-100 px-1 rounded-md m-1 hover:bg-blue-300'>Weekly</button>
+              <button onClick={() => handleTimeSeriesClick('TIME_SERIES_MONTHLY')} className='bg-blue-100 px-1 rounded-md m-1 hover:bg-blue-300'>Monthly</button>
+            </div>
             <div className='border-2 '>
               <button   onClick={() => handleCartTypeClick('candlestick')} className='px-4 btn btn-blue bg-blue-100 px-1 rounded-md m-1 hover:bg-blue-300' >
                 <img className='w-8 h-8' src={candleIcon} alt="" />
@@ -111,7 +121,7 @@ const App: React.FC = () => {
 
           </div>
 
-          <CandlestickChart symbol={selectedSymbol} intervalSelected={intervalSelected} selectedCartType={selectedCartType} />
+          <CandlestickChart symbol={selectedSymbol} intervalSelected={intervalSelected} selectedTimeSeries={selectedTimeSeries} selectedCartType={selectedCartType} />
 
         </div>
       </div>

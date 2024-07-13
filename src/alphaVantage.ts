@@ -2,28 +2,50 @@ import axios from "axios";
 // const API_KEY = 'RIBXT3XYLI69PC0Q';
 // const API_KEY = 'F76TL5L97DDEFZXD';
 // const API_KEY = '1N1RODWWH2NYB4IO';
+const API_KEY = 'GOZ6FFEASUVRG0D5';
 const BASE_URL = 'https://www.alphavantage.co/query';
 
+export const fetchWeeklyTimeSeries = async (symbol:string,intervalSelected:string,  selectedTimeSeries:string, year:number) => {
 
-export const fetchWeeklyTimeSeries = async (symbol:string,intervalSelected:string, year:number) => {
-	// const url = `${BASE_URL}?function=TIME_SERIES_WEEKLY&symbol=${symbol}&apikey=${API_KEY}`;
-	// const url = `${BASE_URL}?function=TIME_SERIES_WEEKLY&symbol=${symbol}&apikey=demo`;
-	// const url = `https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=IBM&interval=5min&apikey=1N1RODWWH2NYB4IO`;
-	const url = `${BASE_URL}?function=TIME_SERIES_INTRADAY&symbol=${symbol}&interval=${intervalSelected}&apikey=demo`;
-  const interval = `Time Series (${intervalSelected})`
+  let interval:string | null =''
+  let url: string | null = null;
+	// url = `${BASE_URL}?function=TIME_SERIES_INTRADAY&symbol=${symbol}&interval=${intervalSelected}&apikey=demo`;
 
+  if (selectedTimeSeries === 'TIME_SERIES_INTRADAY') {
+    url = `${BASE_URL}?function=TIME_SERIES_INTRADAY&symbol=${symbol}&interval=${intervalSelected}&apikey=${API_KEY}`;
+    interval = `Time Series (${intervalSelected})`
+    
+  } 
+  else {
+    switch (selectedTimeSeries) {
+      case 'TIME_SERIES_WEEKLY':
+        url = `${BASE_URL}?function=${selectedTimeSeries}&symbol=${symbol}&apikey=${API_KEY}`;
+        interval='Weekly Time Series';
+        break;
+      case 'TIME_SERIES_MONTHLY':
+        url = `${BASE_URL}?function=${selectedTimeSeries}&symbol=${symbol}&apikey=${API_KEY}`;
+        interval='Monthly Time Series';
+        break;
+      default:
+        url = `${BASE_URL}?function=TIME_SERIES_INTRADAY&symbol=${symbol}&interval=${intervalSelected}&apikey=demo`;
+        interval=`Time Series (${intervalSelected})`;
+        break;
+    }
+  }
 
-  const response = await axios.get(url);
-  const timeSeries = response.data[interval];
-  console.log(timeSeries);
-
-  const filteredData = Object.keys(timeSeries)
-  .filter(date => new Date(date).getFullYear() === year)
-  .reduce((acc, date) => {
-    acc[date] = timeSeries[date];
-    return acc;
-  }, {} as any);
-  console.log(filteredData);
-  return filteredData;
+  if(url){
+    const response = await axios.get(url);
+    const timeSeries = response.data[interval];
+    console.log(timeSeries);
+  
+    const filteredData = Object.keys(timeSeries)
+    .filter(date => new Date(date).getFullYear() === year)
+    .reduce((acc, date) => {
+      acc[date] = timeSeries[date];
+      return acc;
+    }, {} as any);
+    console.log(filteredData);
+    return filteredData;
+  }
 };
   
